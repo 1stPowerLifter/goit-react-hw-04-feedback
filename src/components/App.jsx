@@ -1,5 +1,5 @@
 import { GlobalStyle } from './GlobalStyle';
-import { Component, useState } from 'react';
+import { useState } from 'react';
 import typeOfFB from '../feedbackTypes'
 import { Feedback } from './Feedback/Feedback';
 import { Statistics } from './Statistics/Statistics';
@@ -7,16 +7,28 @@ import { Statistics } from './Statistics/Statistics';
 
 export const App = () => {
   const [good, setGood] = useState(0)
-  
-  // state = {
-  //   good: 0,
-  //   neutral: 0,
-  //   bad: 0
-  // }
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
-  const addFeedback = feedback => this.setState(prevState =>
-    ({ [feedback]: prevState[feedback] + 1 }));
 
+  const addFeedback = feedback => {
+    switch (feedback) {
+  case "good":
+    setGood(state => state + 1)
+    break;
+
+  case "neutral":
+    setNeutral(state => state + 1)
+    break;
+
+  case "bad":
+    setBad(state => state + 1)
+    break;
+
+  default:
+    alert("Something went wrong, please try again later")
+}
+  }
     return (
       <>
         <Feedback
@@ -27,7 +39,7 @@ export const App = () => {
         <Statistics
           title="Statistics"
           stats={typeOfFB}
-          state={state}
+          state={{good, neutral, bad}}
         />
         <GlobalStyle />
       </>

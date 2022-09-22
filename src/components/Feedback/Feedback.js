@@ -1,26 +1,24 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'components/Box';
 import { Button } from './FeedbackBtn.styled';
 
 
-export class Feedback extends Component {
+export const Feedback = ({ title, btnNames, addFeedback }) => {
 
-    render() { 
-        const { title, btnNames, addFeedback} = this.props
+    
 
-        return(
-            <Box p={5}>
-                <h2>{title}</h2>
-                <Box display="flex" gridGap={4} mt={4}>
-                    {btnNames.map( name => (
-                        <Button type='button' key={name}
-                            onClick={() => addFeedback(name.toLowerCase())}>{name}</Button>
-                    ))}
-                </Box>
+    return (
+        <Box p={5}>
+            <h2>{title}</h2>
+            <Box display="flex" gridGap={4} mt={4}>
+                {btnNames.map(name => (
+                    <Button type='button' key={name}
+                        onClick={() => addFeedback(name.toLowerCase())}>{name}</Button>
+                ))}
             </Box>
-        )
-    }
+        </Box>
+    )
+    
 }
 
 
